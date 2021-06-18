@@ -74,7 +74,7 @@ public class UploadProductImages extends HttpServlet {
 		//Handle File Upload to our Folder
 		   int maxFileSize = 5000 * 1024;
 		   int maxMemSize = 5000 * 1024;
-		   String filePath = "C:/Users/USER/eclipse-workspace/FINAL PROJECT/Underarmour/WebContent/assets/img/products/";
+		   String filePath = "C:/Users/USER/eclipse-workspace/J2EE-FinalProject-with-Express-API/Underarmour/WebContent/assets/img/products/";
 		 
 		   String contentType = request.getContentType();
 		   if ((contentType.indexOf("multipart/form-data") >= 0)) {
