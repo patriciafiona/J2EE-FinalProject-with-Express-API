@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Underarmour</display-name>
+  <welcome-file-list>
+    <welcome-file>customerIndex.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Admin Page -->
+  <servlet>
+    <servlet-name>AdminHomePage</servlet-name>
+    <servlet-class>main.servlets.admin.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminHomePage</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Status -->
+  <servlet>
+    <servlet-name>StatusDelete</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeStatusDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatusDelete</servlet-name>
+    <url-pattern>/status/delete/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StatusEdit</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeStatusEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatusEdit</servlet-name>
+    <url-pattern>/status/edit/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Category -->
+  <servlet>
+    <servlet-name>CategoryDelete</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeCategoryDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryDelete</servlet-name>
+    <url-pattern>/category/delete/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CategoryEdit</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeCategoryEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryEdit</servlet-name>
+    <url-pattern>/category/edit/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Tags -->
+  <servlet>
+    <servlet-name>TagDelete</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeTagsDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagDelete</servlet-name>
+    <url-pattern>/tag/delete/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TagEdit</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeTagsEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagEdit</servlet-name>
+    <url-pattern>/tag/edit/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Users -->
+  <servlet>
+    <servlet-name>UserDelete</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeUsersDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserDelete</servlet-name>
+    <url-pattern>/user/delete/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserEdit</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeUsersEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserEdit</servlet-name>
+    <url-pattern>/user/edit/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Products -->
+  <servlet>
+    <servlet-name>ProductsDelete</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeProductsDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductsDelete</servlet-name>
+    <url-pattern>/product/delete/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ProductsEdit</servlet-name>
+    <servlet-class>main.servlets.employee.EmployeeProductsEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductsEdit</servlet-name>
+    <url-pattern>/product/edit/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Products Image -->
+  <servlet>
+    <servlet-name>ProductImageEdit</servlet-name>
+    <servlet-class>main.servlets.employee.UploadProductImages</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductImageEdit</servlet-name>
+    <url-pattern>/upload_images/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Products Detail -->
+  <servlet>
+    <servlet-name>ProductDetail</servlet-name>
+    <servlet-class>main.servlets.customer.CustomerProductDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductDetail</servlet-name>
+    <url-pattern>/product/details/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Delete From Cart -->
+  <servlet>
+    <servlet-name>RemoveFromCart</servlet-name>
+    <servlet-class>main.servlets.customer.CustomerDeleteFromCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveFromCart</servlet-name>
+    <url-pattern>/cart/remove/*</url-pattern>
+  </servlet-mapping>
+</web-app>
