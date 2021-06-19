@@ -95,18 +95,19 @@ public class PhotosDaoImpl implements Dao{
 		Connection conn = JDBCUtil.getConnection();
 		
 		Statement st = conn.createStatement();
-		String sql = "Select * from photos WHERE id='"+ id +"' ";
+		String sql = "Select * from photos WHERE product_id='"+ id +"' ";
 		ResultSet rs = st.executeQuery(sql);
 		
 		main.entities.Photo  photo = null;
 		if (rs.next()) {
 			int photo_id = rs.getInt("id");
+			int product_id = rs.getInt("product_id");
 			String photo_01 = rs.getString("photo_01");
 			String photo_02 = rs.getString("photo_02");
 			String photo_03 = rs.getString("photo_03");
 			String photo_04 = rs.getString("photo_04");
 			String photo_05 = rs.getString("photo_05");
-			photo = new main.entities.Photo(photo_id, photo_01, photo_02, photo_03, photo_04, photo_05);
+			photo = new main.entities.Photo(photo_id, product_id, photo_01, photo_02, photo_03, photo_04, photo_05);
 		}
 		JDBCUtil.close(conn, st, rs);
 		return (Photo) photo;

@@ -59,9 +59,9 @@
 		<script src='<c:url value="/assets/vendor/jquery/jquery-3.6.0.min.js"/>' ></script>
 	</head>
 	<body>
+		<jsp:include page="views/sidebar/sidebar.jsp" />  
+		
 		<main>
-			<jsp:include page="views/sidebar/sidebar.jsp" />  
-			
 			<!-- Call Body Content based on the Page -->
 			<!-- Implement Single Main Page -->
 			<c:choose>

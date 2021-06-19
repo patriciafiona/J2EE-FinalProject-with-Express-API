@@ -115,8 +115,8 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-	        <img class="noProductImgXl" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
-	        <h3>No Status Found</h3>
+	        <img class="noProductImg" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
+	        <h3 class="text-center">No Status Found</h3>
 	    </c:otherwise>
 	</c:choose>
 </div>

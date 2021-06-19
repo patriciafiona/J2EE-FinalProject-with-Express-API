@@ -26,7 +26,7 @@
 	<hr>
 	
 	<c:set var="totalCount" scope="session" value="${listProduct.size()}"/>
-	<c:set var="perPage" scope="session"  value="30"/>
+	<c:set var="perPage" scope="session"  value="40"/>
 	<c:set var="pageStart" value="${param.start}"/>
 	<fmt:formatNumber  var="totalPage" scope="session" value="${listProduct.size() / perPage + (listProduct.size() / perPage % 1 == 0 ? 0 : 0.5)}" 
     	type="number" pattern="#" />
@@ -40,37 +40,40 @@
 	<div class="row d-flex justify-content-center">
 		<c:choose>
 			<c:when test="${listProduct.size() > 0}">
-				<c:forEach items="${listProduct}" var="product" begin="${pageStart}" end="${pageStart + perPage - 1}">
-					<div class="card listProducts my-3 mx-2 p-0" style="width: 18rem;">
-					  <div class="product-img-container">
-					  	<img class="product-img" src="assets/img/products/${product.getPhoto_01()}" alt="Product Image">
-					  </div>
-					  <div class="card-body">
-					    <p class="book-title"><strong>${product.getName()}</strong></p>
-					    <p class="card-text text-mute">
-					    	<fmt:formatNumber currencySymbol="Rp." value = "${product.getPrice()}" type = "currency"/>
-					    </p>
-					  </div>
-					  <div class="card-footer">
-					  	<div class="row">
-					  		<div class="col-md-8">
-						  		<a href="./product/details/${product.getId()}" class="btn btn-primary">See details</a>
+				<c:forEach items="${listProduct}" var="product" begin="${(pageStart*perPage) > 0 ? (pageStart*perPage):0}" 
+							end="${(pageStart*perPage) + perPage -1}">
+					<c:if test="${product.getStock() > 0}">
+						<div class="card listProducts my-3 mx-2 p-0" style="width: 18rem;">
+						  <div class="product-img-container">
+						  	<img class="product-img" src="assets/img/products/${product.getPhoto_01()}" alt="Product Image">
+						  </div>
+						  <div class="card-body">
+						    <p class="book-title"><strong>${product.getName()}</strong></p>
+						    <p class="card-text text-mute">
+						    	<fmt:formatNumber currencySymbol="Rp." value = "${product.getPrice()}" type = "currency"/>
+						    </p>
+						  </div>
+						  <div class="card-footer">
+						  	<div class="row">
+						  		<div class="col-md-8">
+							  		<a href="./product/details/${product.getId()}" class="btn btn-primary">See details</a>
+							  	</div>
+							  	<div class="col-md-4">
+							  		<form action="???" method="GET">
+							  			<input type="hidden" name="productId" value="${product.getId()}"/>
+							  			<button type="submit" class="btn btn-outline-danger rounded-circle">
+							  				<i class="fa fa-heart-o" aria-hidden="true"></i>
+							  			</button>
+							  		</form>
+							  	</div>
 						  	</div>
-						  	<div class="col-md-4">
-						  		<form action="???" method="GET">
-						  			<input type="hidden" name="productId" value="${product.getId()}"/>
-						  			<button type="submit" class="btn btn-outline-danger rounded-circle">
-						  				<i class="fa fa-heart-o" aria-hidden="true"></i>
-						  			</button>
-						  		</form>
-						  	</div>
-					  	</div>
-					  </div>
-					</div>
+						  </div>
+						</div>
+					</c:if>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-		        <img class="noProductImgXl" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
+		        <img class="noProductImg" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
 		        <h3 class="text-center">No Product Found</h3>
 		    </c:otherwise>
 		</c:choose>
@@ -80,10 +83,10 @@
 		  <ul class="pagination">
 		  	<c:choose>
 				<c:when test="${empty pageStart or pageStart+1 > 1}">
-		       		<li class="page-item"><a class="page-link" href="./CustomerTops?tag=men&start=${pageStart - 1}">Previous</a></li>
+		       		<li class="page-item"><a class="page-link" href="./CustomerShoes?tag=men&start=${pageStart - 1}">Previous</a></li>
 		       	</c:when>
 		       	<c:otherwise>
-		       		<li class="page-item disabled"><a class="page-link" href="./CustomerTops?tag=men&start=${pageStart - 1}">Previous</a></li>
+		       		<li class="page-item disabled"><a class="page-link" href="./CustomerShoes?tag=men&start=${pageStart - 1}">Previous</a></li>
 		       	</c:otherwise>
 			</c:choose>
 		  	<c:forEach begin="1" end="${totalPage}" varStatus="loop">
@@ -91,13 +94,13 @@
 			</c:forEach>
 			<c:choose>
 		       	<c:when test="${empty pageStart or pageStart+1 < totalPage}">
-		       		<li class="page-item"><a class="page-link" href="./CustomerTops?tag=men&start=${pageStart + 1}">Next</a></li>
+		       		<li class="page-item"><a class="page-link" href="./CustomerShoes?tag=men&start=${pageStart + 1}">Next</a></li>
 		       	</c:when>
 		       	<c:when test="${empty pageStart or totalPage == 0}">
-		       		<li class="page-item disabled"><a class="page-link" href="./CustomerTops?tag=men&start=${pageStart + 1}">Next</a></li>
+		       		<li class="page-item disabled"><a class="page-link" href="./CustomerShoes?tag=men&start=${pageStart + 1}">Next</a></li>
 		       	</c:when>
 		       	<c:otherwise>
-		       		<li class="page-item disabled"><a class="page-link" href="./CustomerTops?tag=men&start=${pageStart + 1}">Next</a></li>
+		       		<li class="page-item disabled"><a class="page-link" href="./CustomerShoes?tag=men&start=${pageStart + 1}">Next</a></li>
 		       	</c:otherwise>
 			</c:choose>
 			

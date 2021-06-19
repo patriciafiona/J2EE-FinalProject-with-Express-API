@@ -77,10 +77,10 @@ public class ProductsDaoImpl implements Dao{
 		Statement st = conn.createStatement();
 		String sql = "Select products.*, categories.name AS category_name, "
 				+ "tags.name AS tag_name, photos.photo_01 from products "
+				+ "INNER JOIN photos ON products.id = photos.product_id "
 				+ "INNER JOIN categories ON products.category = categories.id "
 				+ "INNER JOIN tags ON products.tag = tags.id "
-				+ "INNER JOIN photos ON products.id = photos.product_id "
-				+ "ORDER BY products.id ASC";
+				+ "ORDER BY products.id DESC";
 		ResultSet rs = st.executeQuery(sql);
 		
 		ArrayList<main.entities.Product> products = new ArrayList<main.entities.Product>();
@@ -166,7 +166,7 @@ public class ProductsDaoImpl implements Dao{
 				+ "INNER JOIN tags ON products.tag = tags.id "
 				+ "INNER JOIN photos ON products.id = photos.product_id "
 				+ "WHERE categories.name= '"+ cat +"' "
-				+ "ORDER BY products.id ASC";
+				+ "ORDER BY products.updated_at DESC";
 		ResultSet rs = st.executeQuery(sql);
 		
 		ArrayList<main.entities.Product> products = new ArrayList<main.entities.Product>();
@@ -203,8 +203,8 @@ public class ProductsDaoImpl implements Dao{
 				+ "INNER JOIN categories ON products.category = categories.id "
 				+ "INNER JOIN tags ON products.tag = tags.id "
 				+ "INNER JOIN photos ON products.id = photos.product_id "
-				+ "WHERE categories.name LIKE '%"+ cat +"%' AND tags.name LIKE '%"+ tag +"%' "
-				+ "ORDER BY products.id ASC";
+				+ "WHERE categories.name LIKE '"+ cat +"%' AND tags.name LIKE '%"+ tag +"%' "
+				+ "ORDER BY products.updated_at DESC";
 		ResultSet rs = st.executeQuery(sql);
 		
 		ArrayList<main.entities.Product> products = new ArrayList<main.entities.Product>();
@@ -274,10 +274,11 @@ public class ProductsDaoImpl implements Dao{
 		//only get id to insert photo
 		Connection conn = JDBCUtil.getConnection();
 		
+		name = name.replaceAll("'","''");
 		System.out.println("Name: "+ name);
 		
 		Statement st = conn.createStatement();
-		String sql = "Select * from products WHERE name LIKE '%"+ name +"%' ";
+		String sql = "Select * from products WHERE name = '"+ name +"' ";
 		ResultSet rs = st.executeQuery(sql);
 		
 		Product product = null;

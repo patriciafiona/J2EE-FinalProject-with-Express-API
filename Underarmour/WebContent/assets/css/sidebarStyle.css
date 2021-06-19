@@ -10,12 +10,19 @@ html {
   overflow-y: hidden;
 }
 
+#sidebar{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+}
+
 main {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 100vh;
-  height: -webkit-fill-available;
-  max-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 15%;
+  bottom: 0;
+  width: 85%;
   overflow-x: hidden;
 }
 

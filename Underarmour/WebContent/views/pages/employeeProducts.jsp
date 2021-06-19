@@ -107,6 +107,19 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:set var="totalCount" scope="session" value="${listProduct.size()}"/>
+	<c:set var="perPage" scope="session"  value="10"/>
+	<c:set var="pageStart" value="${param.start}"/>
+	<fmt:formatNumber  var="totalPage" scope="session" value="${listProduct.size() / perPage + (listProduct.size() / perPage % 1 == 0 ? 0 : 0.5)}" 
+    	type="number" pattern="#" />
+	<c:if test="${empty pageStart or pageStart < 0}">
+	       <c:set var="pageStart" value="0"/>
+	</c:if>
+	<c:if test="${totalCount < pageStart}">
+	       <c:set var="pageStart" value="${pageStart - perPage}"/>
+	</c:if>
+	
 	<div class="table-responsive">
 		<c:choose>
 			<c:when test="${listProduct.size() > 0}">
@@ -129,7 +142,8 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-						<c:forEach items="${listProduct}" var="product">
+						<c:forEach items="${listProduct}" var="product" begin="${(pageStart*perPage) > 0 ? (pageStart*perPage):0}" 
+							end="${(pageStart*perPage) + perPage -1}">
 							<tr>
 							    <th scope="row">${product.getId()}</th>
 							    <td>${product.getName()}</td>
@@ -173,11 +187,40 @@
 				</table>
 			</c:when>
 			<c:otherwise>
-		        <img class="noProductImgXl" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
-		        <h3>No Products Found</h3>
+		        <img class="noProductImg" src='<c:url value="/assets/img/search_not_found.png"/>' alt="no result"/>
+		        <h3 class="text-center">No Products Found</h3>
 		    </c:otherwise>
 		</c:choose>
 	</div>
+	<c:if test="${listProduct.size() > 0}">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		  	<c:choose>
+				<c:when test="${empty pageStart or pageStart+1 > 1}">
+		       		<li class="page-item"><a class="page-link" href="./EmployeeProducts?tag=men&start=${pageStart - 1}">Previous</a></li>
+		       	</c:when>
+		       	<c:otherwise>
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeProducts?tag=men&start=${pageStart - 1}">Previous</a></li>
+		       	</c:otherwise>
+			</c:choose>
+		  	<c:forEach begin="1" end="${totalPage}" varStatus="loop">
+			    <li class="page-item ${loop.index - 1 == pageStart ? 'active': ''}"><a class="page-link" href="./EmployeeProducts?tag=men&start=${loop.index - 1}">${loop.index}</a></li>
+			</c:forEach>
+			<c:choose>
+		       	<c:when test="${empty pageStart or pageStart+1 < totalPage}">
+		       		<li class="page-item"><a class="page-link" href="./EmployeeProducts?tag=men&start=${pageStart + 1}">Next</a></li>
+		       	</c:when>
+		       	<c:when test="${empty pageStart or totalPage == 0}">
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeProducts?tag=men&start=${pageStart + 1}">Next</a></li>
+		       	</c:when>
+		       	<c:otherwise>
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeProducts?tag=men&start=${pageStart + 1}">Next</a></li>
+		       	</c:otherwise>
+			</c:choose>
+			
+		  </ul>
+		</nav>
+	</c:if>
 </div>
 
 <!-- Modal -->

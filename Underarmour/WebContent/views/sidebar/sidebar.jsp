@@ -25,7 +25,7 @@
 	}
 %>
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark-grey sticky-top" style="width: 280px;">
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark-grey">
    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
      <span class="fs-4">Under Armour</span>
    </a>
@@ -40,6 +40,7 @@
      <li>
        <a href="${context}/EmployeeCategories" class="nav-link text-white 
        		${pagina.endsWith('/EmployeeCategories') ? 'active' : ''} 
+       		${pagina.endsWith('/EmployeeCategoryAdd') ? 'active' : ''} 
        		${categoryEditPage eq 'EmployeeCategoryEdit' ? 'active' : ''}  ">
          <i class="fa fa-folder-open" aria-hidden="true"></i>
          Categories
@@ -48,6 +49,7 @@
      <li>
        <a href="${context}/EmployeeTags" class="nav-link text-white 
        		${pagina.endsWith('/EmployeeTags') ? 'active' : ''} 
+       		${pagina.endsWith('/EmployeeTagsAdd') ? 'active' : ''} 
        		${tagsEditPage eq 'EmployeeTagsEdit' ? 'active' : ''} ">
          <i class="fa fa-tags" aria-hidden="true"></i>
          Tags
@@ -63,6 +65,7 @@
      <li>
        <a href="${context}/EmployeeProducts" class="nav-link text-white 
        		${pagina.endsWith('/EmployeeProducts') ? 'active' : ''} 
+       		${pagina.endsWith('/EmployeeProductsAdd') ? 'active' : ''} 
        		${productsEditPage eq 'EmployeeProductsEdit' ? 'active' : ''} ">
          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
          Products
@@ -71,6 +74,7 @@
      <li>
        <a href="${context}/EmployeeUsers" class="nav-link text-white 
        		${pagina.endsWith('/EmployeeUsers') ? 'active' : ''} 
+       		${pagina.endsWith('/EmployeeUsersAdd') ? 'active' : ''} 
        		${usersEditPage eq 'EmployeeUsersEdit' ? 'active' : ''} ">
          <i class="fa fa-users" aria-hidden="true"></i>
          Users
@@ -79,6 +83,7 @@
      <li>
        <a href="${context}/EmployeeStatus" class="nav-link text-white 
        		${pagina.endsWith('/EmployeeStatus') ? 'active' : ''}
+       		${pagina.endsWith('/EmployeeStatusAdd') ? 'active' : ''}
        		${statusEditPage eq 'EmployeeStatusEdit' ? 'active' : ''} ">
         <i class="fa fa-id-badge" aria-hidden="true"></i>
          Status

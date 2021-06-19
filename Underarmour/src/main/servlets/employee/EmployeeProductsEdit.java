@@ -94,8 +94,8 @@ public class EmployeeProductsEdit extends HttpServlet {
 		
 		Service ps = new ProductsServiceImpl();
 		
-		if(id > 0 && !name.isEmpty() && category !=0 && tag != 0 && price != 0 && stock !=0 
-				&& !color.isEmpty() && !description.isEmpty() ) {
+		if(id > 0 && !name.isEmpty() && category !=0 && tag != 0 && price != 0 && 
+				!color.isEmpty() && !description.isEmpty() ) {
 			try {
 				Product product = new Product(id, name, category, tag, rating, price, stock, color, description);
 				if(ps.update(product) == 1){

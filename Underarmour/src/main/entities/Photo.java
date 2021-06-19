@@ -28,6 +28,17 @@ public class Photo {
 		this.updated_at = updated_at;
 	}
 	
+	public Photo(int id, int product_id, String photo_01, String photo_02, String photo_03, String photo_04, String photo_05) {
+		super();
+		this.id = id;
+		this.product_id = product_id;
+		this.photo_01 = photo_01;
+		this.photo_02 = photo_02;
+		this.photo_03 = photo_03;
+		this.photo_04 = photo_04;
+		this.photo_05 = photo_05;
+	}
+	
 	public Photo(int product_id, String photo_01, String photo_02, String photo_03, String photo_04, String photo_05) {
 		super();
 		this.product_id = product_id;
