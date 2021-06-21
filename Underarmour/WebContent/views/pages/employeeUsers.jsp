@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
 <div class="container my-5 sidebarContainer">
@@ -88,6 +89,19 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:set var="totalCount" scope="session" value="${listUser.size()}"/>
+	<c:set var="perPage" scope="session"  value="10"/>
+	<c:set var="pageStart" value="${param.start}"/>
+	<fmt:formatNumber  var="totalPage" scope="session" value="${listUser.size() / perPage + (listUser.size() / perPage % 1 == 0 ? 0 : 0.5)}" 
+    	type="number" pattern="#" />
+	<c:if test="${empty pageStart or pageStart < 0}">
+	       <c:set var="pageStart" value="0"/>
+	</c:if>
+	<c:if test="${totalCount < pageStart}">
+	       <c:set var="pageStart" value="${pageStart - perPage}"/>
+	</c:if>
+	
 	<c:choose>
 		<c:when test="${listUser.size() > 0}">
 			<table class="table table-hover">
@@ -107,7 +121,8 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-					<c:forEach items="${listUser}" var="user">
+					<c:forEach items="${listUser}" var="user" begin="${(pageStart*perPage) > 0 ? (pageStart*perPage):0}" 
+							end="${(pageStart*perPage) + perPage -1}">
 						<tr>
 						    <th scope="row">${user.getId()}</th>
 						    <td>${user.getName()}</td>
@@ -138,6 +153,36 @@
 	        <h3 class="text-center">No User Found</h3>
 	    </c:otherwise>
 	</c:choose>
+	
+	<c:if test="${listUser.size() > 0}">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		  	<c:choose>
+				<c:when test="${empty pageStart or pageStart+1 > 1}">
+		       		<li class="page-item"><a class="page-link" href="./EmployeeUsers?start=${pageStart - 1}">Previous</a></li>
+		       	</c:when>
+		       	<c:otherwise>
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeUsers?start=${pageStart - 1}">Previous</a></li>
+		       	</c:otherwise>
+			</c:choose>
+		  	<c:forEach begin="1" end="${totalPage}" varStatus="loop">
+			    <li class="page-item ${loop.index - 1 == pageStart ? 'active': ''}"><a class="page-link" href="./EmployeeUsers?start=${loop.index - 1}">${loop.index}</a></li>
+			</c:forEach>
+			<c:choose>
+		       	<c:when test="${empty pageStart or pageStart+1 < totalPage}">
+		       		<li class="page-item"><a class="page-link" href="./EmployeeUsers?start=${pageStart + 1}">Next</a></li>
+		       	</c:when>
+		       	<c:when test="${empty pageStart or totalPage == 0}">
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeUsers?start=${pageStart + 1}">Next</a></li>
+		       	</c:when>
+		       	<c:otherwise>
+		       		<li class="page-item disabled"><a class="page-link" href="./EmployeeUsers?start=${pageStart + 1}">Next</a></li>
+		       	</c:otherwise>
+			</c:choose>
+			
+		  </ul>
+		</nav>
+	</c:if>
 </div>
 
 <!-- Modal -->

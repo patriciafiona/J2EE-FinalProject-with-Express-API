@@ -28,10 +28,11 @@ public class EmployeeTagsEdit extends HttpServlet {
 		System.out.println("doGet---------------------------------------------------------------------------------------EmployeeTagsEdit");
 		//check login status
 		HttpSession session = request.getSession(true);
-		if (session.getAttribute("email") != null) {
+		if (session.getAttribute("email") != null && session.getAttribute("user_status") != null) {
 			String email = session.getAttribute("email").toString();
+			String u_stat = session.getAttribute("user_status").toString();
 			System.out.println("Login with email: "+ email);
-			if(!email.isEmpty()) {
+			if(!email.isEmpty() && u_stat.equals("1")) {
 				System.out.println("ID: "+ request.getParameter("statusId"));
 				String URI = request.getRequestURI();
 				int id = Integer.valueOf(URI.substring(URI.lastIndexOf('/') + 1) );

@@ -128,7 +128,6 @@ public class ProductsDaoImpl implements Dao{
 				+ "INNER JOIN tags ON products.tag = tags.id "
 				+ "INNER JOIN photos ON products.id = photos.product_id "
 				+ "where products.id IN ("+ query +") ";
-		System.out.println(sql);
 		ResultSet rs = st.executeQuery(sql);
 		
 		ArrayList<main.entities.Product> products = new ArrayList<main.entities.Product>();

@@ -25,7 +25,6 @@ import main.service.implementation.ProductsServiceImpl;
 @WebServlet("/CustomerProductDetail")
 public class CustomerProductDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private List<Product> list;
     private Map<Integer, ProductCart> listCart;
     
     public CustomerProductDetail() {
@@ -42,27 +41,29 @@ public class CustomerProductDetail extends HttpServlet {
 			String URI = request.getRequestURI();
 			int id = Integer.valueOf(URI.substring(URI.lastIndexOf('/') + 1) );
 			
-			//check if book already in cart or not
+			//check if product already in cart or not
 			//if already send current data in cart
 			ArrayList<Cart> myCartSession = (ArrayList<Cart>) session.getAttribute("cart");
-			ArrayList<Integer> ids = new ArrayList();
-			ids.add(id); //current product
+			
 			
 			//get data from database
 			try {
-				list = ps.findByManyId(ids);
+				Product detail_product = ps.findById(id);
 				
 				if(myCartSession != null && myCartSession.size() > 0) {
 					//merge using hashmap
 					listCart = new HashMap<>();
 					
-					for (int i=0; i<list.size(); i++) {
-						ProductCart product = new ProductCart(
-								list.get(i), 
-								myCartSession.get(i).getSize(), 
-								myCartSession.get(i).getQuantity()
-								);
-						listCart.put(list.get(i).getId(), product);
+					for (int i=0; i<myCartSession.size(); i++) {
+						
+						if(myCartSession.get(i).getProductId() == id) {
+							ProductCart product = new ProductCart(
+									detail_product, 
+									myCartSession.get(i).getSize(), 
+									myCartSession.get(i).getQuantity()
+									);
+							listCart.put(detail_product.getId(), product);
+						}
 					}
 				}else {
 					System.out.println("Cart is still empty");
@@ -81,6 +82,7 @@ public class CustomerProductDetail extends HttpServlet {
 			    	ProductCart p = (ProductCart) pair.getValue();
 			    	
 			    	if(p.getProduct().getId() == id ) {
+			    		System.out.println("Found data for id: "+ p.getProduct().getId());
 						productInCart = p.getQuantity();
 						size = p.getSize();
 						break;

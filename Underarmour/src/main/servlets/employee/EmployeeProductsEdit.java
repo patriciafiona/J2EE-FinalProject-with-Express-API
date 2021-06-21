@@ -42,10 +42,11 @@ public class EmployeeProductsEdit extends HttpServlet {
 		System.out.println("doGet---------------------------------------------------------------------------------------EmployeeProductsEdit");
 		//check login status
 		HttpSession session = request.getSession(true);
-		if (session.getAttribute("email") != null) {
+		if (session.getAttribute("email") != null && session.getAttribute("user_status") != null) {
 			String email = session.getAttribute("email").toString();
+			String u_stat = session.getAttribute("user_status").toString();
 			System.out.println("Login with email: "+ email);
-			if(!email.isEmpty()) {
+			if(!email.isEmpty() && u_stat.equals("1")) {
 				Service ps = new ProductsServiceImpl();
 				Service cs = new CategoriesServiceImpl();
 				Service ts = new TagsServiceImpl();

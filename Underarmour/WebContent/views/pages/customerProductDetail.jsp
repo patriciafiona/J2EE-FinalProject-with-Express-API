@@ -165,7 +165,8 @@
 							  <select name="size" class="custom-select" id="inputGroupSelect01">
 							    <option selected>Choose...</option>
 							    <c:forEach begin="30" end="38" varStatus="loop">
-							    	<option value="${loop.index} ${loop.index == currentSizeInCart ? 'selected':'' } ">${loop.index}</option>
+							    	<fmt:parseNumber var = "currentSizeInCartNum" type = "number" value = "${currentSizeInCart}" />
+							    	<option value="${loop.index}" ${loop.index == currentSizeInCartNum ? 'selected':'' }>${loop.index}</option>
 							    </c:forEach>
 							  </select>
 					  	</c:when>
@@ -173,7 +174,8 @@
 							  <select name="size" class="custom-select" id="inputGroupSelect01">
 							    <option selected>Choose...</option>
 							    <c:forEach begin="36" end="45" varStatus="loop">
-							    	<option value="${loop.index} ${loop.index == currentSizeInCart ? 'selected':'' }">${loop.index}</option>
+							    	<fmt:parseNumber var = "currentSizeInCartNum" type = "number" value = "${currentSizeInCart}" />
+							    	<option value="${loop.index}" ${loop.index == currentSizeInCartNum ? 'selected':'' }>${loop.index}</option>
 							    </c:forEach>
 							  </select>
 					  	</c:when>
@@ -190,7 +192,6 @@
 					  	</c:otherwise>
 					  </c:choose>
 					</div>
-					Current size${currentSizeInCart }
 					<p class="mb-1"><b>Quantity</b></p>
 					<div class="input-group mb-3">
 					  <div class="input-group-prepend">
@@ -201,7 +202,7 @@
 					</div>
 					<div class="row">
 					  	<div class="col-md-3">
-					  		<a href="${context}/CustomerTops?tag=${product.getCategory_name()}" class="btn btn-danger">Cancel</a>
+					  		<a href="${context}/CustomerTops?category=${product.getCategory_name()}&&tag=${product.getTag_name()}" class="btn btn-danger">Cancel</a>
 					  	</div>
 					  	<div class="col-md-4">
 					  		<button type="submit" class="btn btn-primary">

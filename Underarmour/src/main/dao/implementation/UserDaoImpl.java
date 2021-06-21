@@ -199,7 +199,7 @@ public class UserDaoImpl implements Dao{
 		ArrayList<main.entities.User> users = new ArrayList<main.entities.User>();
 		while (rs.next()) {
 			int id = rs.getInt("id");
-			String name = rs.getString("name");
+			String name = ConvertResult(rs.getString("name"));
 			String email = rs.getString("email");
 			int status = rs.getInt("status");
 			String status_name = rs.getString("status_name");
@@ -229,7 +229,7 @@ public class UserDaoImpl implements Dao{
 		User user = null;
 		if (rs.next()) {
 			int id = rs.getInt("id");
-			String name = rs.getString("name");
+			String name = ConvertResult(rs.getString("name"));
 			String email = rs.getString("email");
 			int status = rs.getInt("status");
 			String phoneNumber = rs.getString("phone_number");

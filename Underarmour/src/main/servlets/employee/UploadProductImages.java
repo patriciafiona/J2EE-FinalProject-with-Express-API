@@ -27,12 +27,12 @@ import main.service.implementation.PhotosServiceImpl;
 public class UploadProductImages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private int product_id;
-	private String photo_01;
-	private String photo_02;
-	private String photo_03;
-	private String photo_04;
-	private String photo_05;
+	private int product_id = 0;
+	private String photo_01 = "";
+	private String photo_02 = "";
+	private String photo_03 = "";
+	private String photo_04 = "";
+	private String photo_05 = "";
 	
     public UploadProductImages() {
         super();
@@ -42,10 +42,11 @@ public class UploadProductImages extends HttpServlet {
 		System.out.println("doGet---------------------------------------------------------------------------------------EmployeeProductsAdd");
 		//check login status
 		HttpSession session = request.getSession(true);
-		if (session.getAttribute("email") != null) {
+		if (session.getAttribute("email") != null && session.getAttribute("user_status") != null) {
 			String email = session.getAttribute("email").toString();
+			String u_stat = session.getAttribute("user_status").toString();
 			System.out.println("Login with email: "+ email);
-			if(!email.isEmpty()) {
+			if(!email.isEmpty() && u_stat.equals("1")) {
 				Service ps = new PhotosServiceImpl();
 				try {
 					String URI = request.getRequestURI();

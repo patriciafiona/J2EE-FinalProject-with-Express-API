@@ -72,6 +72,7 @@ public class EmployeeLogin extends HttpServlet {
 							HttpSession session = request.getSession(true);
 							session.setAttribute("username", userData.getName());
 							session.setAttribute("email", email);
+							session.setAttribute("user_status", userData.getStatus()); //1 for admin
 							
 							if(request.getParameter("rememberMe") != null) {
 								session.setMaxInactiveInterval(604800);    // session timeout in seconds (for 1 week)
