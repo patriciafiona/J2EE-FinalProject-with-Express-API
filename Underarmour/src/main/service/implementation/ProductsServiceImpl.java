@@ -1,13 +1,10 @@
 package main.service.implementation;
 
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.dao.Dao;
 import main.dao.implementation.ProductsDaoImpl;
-import main.entities.User;
 import main.service.Service;
 
 public class ProductsServiceImpl implements Service{

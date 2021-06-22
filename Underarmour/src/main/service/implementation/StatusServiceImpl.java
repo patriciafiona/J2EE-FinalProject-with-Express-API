@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.dao.Dao;
 import main.dao.implementation.StatusDaoImpl;
-import main.entities.User;
 import main.service.Service;
 
 public class StatusServiceImpl implements Service{

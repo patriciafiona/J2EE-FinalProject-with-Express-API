@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.dao.Dao;
-import main.entities.User;
-import main.entities.UserStatus;
 import main.utils.JDBCUtil;
 
 public class CategoriesDaoImpl implements Dao{

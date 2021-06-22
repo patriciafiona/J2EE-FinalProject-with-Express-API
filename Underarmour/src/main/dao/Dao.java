@@ -3,9 +3,6 @@ package main.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import main.entities.User;
-
-
 public interface Dao {
 	public <T> int insert(T t) throws SQLException ;
 	public <T> int update(T t) throws SQLException ;

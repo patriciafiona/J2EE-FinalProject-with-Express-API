@@ -3,7 +3,6 @@ package main.service.implementation;
 import java.sql.SQLException;
 import java.util.List;
 
-import main.dao.Dao;
 import main.dao.implementation.UserDaoImpl;
 import main.entities.User;
 import main.service.Service;

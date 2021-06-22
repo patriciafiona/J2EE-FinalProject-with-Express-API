@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.dao.Dao;
 import main.dao.implementation.PhotosDaoImpl;
-import main.entities.User;
 import main.service.Service;
 
 public class PhotosServiceImpl implements Service{

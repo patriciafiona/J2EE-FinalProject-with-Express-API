@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.dao.Dao;
-import main.entities.User;
 import main.utils.JDBCUtil;
 
 public class PhotosDaoImpl implements Dao{

@@ -3,8 +3,6 @@ package main.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import main.entities.User;
-
 public interface Service {
 	public <T> int insert(T t) throws SQLException ;
 	public <T> int update(T t) throws SQLException ;
