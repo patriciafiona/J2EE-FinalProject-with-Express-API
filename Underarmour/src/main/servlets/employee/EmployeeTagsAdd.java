@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.entities.Category;
 import main.entities.Tag;
-import main.entities.UserStatus;
 import main.service.Service;
-import main.service.implementation.CategoriesServiceImpl;
-import main.service.implementation.StatusServiceImpl;
 import main.service.implementation.TagsServiceImpl;
 
 @WebServlet("/EmployeeTagsAdd")

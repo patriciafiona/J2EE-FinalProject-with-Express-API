@@ -3,7 +3,6 @@ package main.servlets.employee;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.entities.Category;
-import main.entities.UserStatus;
 import main.service.Service;
 import main.service.implementation.CategoriesServiceImpl;
-import main.service.implementation.StatusServiceImpl;
 
 @WebServlet("/EmployeeCategoryAdd")
 public class EmployeeCategoryAdd extends HttpServlet {

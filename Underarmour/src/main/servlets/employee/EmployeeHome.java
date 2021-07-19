@@ -1,12 +1,9 @@
 package main.servlets.employee;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.entities.User;
-import main.service.Service;
 import main.service.implementation.UserServiceImpl;
 
 @WebServlet("/EmployeeHome")

@@ -1,7 +1,6 @@
 package main.servlets.customer;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;

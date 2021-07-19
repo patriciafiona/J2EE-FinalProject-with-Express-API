@@ -1,7 +1,6 @@
 package main.servlets.customer;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.entities.Cart;
-import main.entities.Category;
-import main.service.Service;
-import main.service.implementation.CategoriesServiceImpl;
 
 @WebServlet("/CustomerAddToCart")
 public class CustomerAddToCart extends HttpServlet {

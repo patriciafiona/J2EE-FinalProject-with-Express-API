@@ -12,8 +12,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Base64;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -24,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.entities.User;
-import main.service.Service;
 import main.service.implementation.UserServiceImpl;
 
 @WebServlet("/EmployeeLogin")

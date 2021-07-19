@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.entities.User;
-import main.service.Service;
 import main.service.implementation.UserServiceImpl;
 
 @WebServlet("/ChangePassword")

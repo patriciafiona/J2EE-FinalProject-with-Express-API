@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.entities.User;
-import main.service.Service;
 import main.service.implementation.UserServiceImpl;
 
 @WebServlet("/Logout")

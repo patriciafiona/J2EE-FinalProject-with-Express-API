@@ -7,20 +7,13 @@ exports.index = function(req, res) {
     response.ok("Hello from the Node JS RESTful side! This is API for Underarmour Apps...", res)
 };
 
-exports.users = function(req, res) {
-    connection.query('SELECT * FROM users', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok('users', rows, res)
-        }
-    });
-};
-
 exports.products = function(req, res) {
-    connection.query('SELECT stocks.*, photos.file, photos.filename FROM stocks '+
-                    'INNER JOIN photos ON stocks.id = photos.stock_id '+
-                    'GROUP BY (stocks.id)', function (error, rows, fields){
+    connection.query('Select products.*, categories.name AS category_name, '+
+                    'tags.name AS tag_name, photos.photo_01 from products '+
+                    'INNER JOIN categories ON products.category = categories.id '+
+                    'INNER JOIN tags ON products.tag = tags.id '+
+                    'INNER JOIN photos ON products.id = photos.product_id '+
+                    'ORDER BY products.updated_at DESC', function (error, rows, fields){
         if(error){
             console.log(error)
         } else{
@@ -29,88 +22,51 @@ exports.products = function(req, res) {
     });
 };
 
-exports.photos = function(req, res) {
-    connection.query('SELECT * FROM photos', function (error, rows, fields){
+exports.productsByCategory = function(req, res) {
+    connection.query('Select products.*, categories.name AS category_name, '+
+                    'tags.name AS tag_name, photos.photo_01 from products '+
+                    'INNER JOIN categories ON products.category = categories.id '+
+                    'INNER JOIN tags ON products.tag = tags.id '+
+                    'INNER JOIN photos ON products.id = photos.product_id '+
+                    'WHERE categories.name= ? '+
+                    'ORDER BY products.updated_at DESC', [req.params.cat_name], function (error, rows, fields){
         if(error){
             console.log(error)
         } else{
-            response.ok('photos', rows, res)
+            response.ok('productsByCategory', rows, res)
         }
     });
 };
 
-exports.photos_id = function(req, res) {
-    connection.query('SELECT * FROM photos WHERE id = ? ', [req.params.id], function (error, rows, fields){
+exports.productsByCategoryAndTag = function(req, res) {
+    connection.query('Select products.*, categories.name AS category_name, '+
+                    'tags.name AS tag_name, photos.photo_01 from products '+
+                    'INNER JOIN categories ON products.category = categories.id '+
+                    'INNER JOIN tags ON products.tag = tags.id '+
+                    'INNER JOIN photos ON products.id = photos.product_id '+
+                    'WHERE categories.name = ? AND tags.name = ? '+
+                    'ORDER BY products.updated_at DESC', [req.params.cat_name,  req.params.tag_name], function (error, rows, fields){
         if(error){
             console.log(error)
         } else{
-            response.ok('photos_id', rows, res)
+            response.ok('productsByCategoryAndTag', rows, res)
         }
     });
 };
 
-exports.photos_stockid = function(req, res) {
-    connection.query('SELECT * FROM photos WHERE stock_id = ? ', [req.params.stock_id], function (error, rows, fields){
+exports.productsById = function(req, res) {
+    connection.query('Select products.*, categories.name AS category_name, '+
+                    'tags.name AS tag_name, photos.photo_01, photos.photo_02, '+
+                    'photos.photo_03, photos.photo_04, photos.photo_05 from products '+
+                    'INNER JOIN categories ON products.category = categories.id '+
+                    'INNER JOIN tags ON products.tag = tags.id '+
+                    'INNER JOIN photos ON products.id = photos.product_id '+
+                    'WHERE products.id = ? ', [req.params.product_id], 
+                    function (error, rows, fields){
         if(error){
             console.log(error)
         } else{
-            response.ok('photos_stockid',rows, res)
-        }
-    });
-};
-
-exports.photosDetail_stockid = function(req, res) {
-    connection.query('SELECT * FROM photos WHERE stock_id = ? and id = ? ', [req.params.stock_id, req.params.id], function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok('photosDetail_stockid', rows, res)
-        }
-    });
-};
-
-//untuk bagian di home (shortcut 5 barang terbaru)
-exports.homeShoes = function(req, res) {
-    connection.query('SELECT stocks.id, stocks.name, stocks.price, photos.filename FROM stocks '+
-                    'INNER JOIN photos ON stocks.id = photos.stock_id '+
-                    "WHERE stocks.category_id = '1' "+
-                    'GROUP BY (stocks.id) '+
-                    'Order BY stocks.updated_at DESC '+
-                    'Limit 5', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok('homeShoes',rows, res)
-        }
-    });
-};
-
-exports.homeShorts = function(req, res) {
-    connection.query('SELECT stocks.id, stocks.name, stocks.price, photos.filename FROM stocks '+
-                    'INNER JOIN photos ON stocks.id = photos.stock_id '+
-                    "WHERE stocks.category_id = '2' "+
-                    'GROUP BY (stocks.id) '+
-                    'Order BY stocks.updated_at DESC '+
-                    'Limit 5', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok('homeShorts',rows, res)
-        }
-    });
-};
-
-exports.homeTouserTights = function(req, res) {
-    connection.query('SELECT stocks.id, stocks.name, stocks.price, photos.filename FROM stocks '+
-                    'INNER JOIN photos ON stocks.id = photos.stock_id '+
-                    "WHERE stocks.category_id = '8' "+
-                    'GROUP BY (stocks.id) '+
-                    'Order BY stocks.updated_at DESC '+
-                    'Limit 5', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok('homeTouser & Tights',rows, res)
+            response.ok('productsById', rows, res)
         }
     });
 };
