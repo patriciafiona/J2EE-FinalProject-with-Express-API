@@ -1,5 +1,4 @@
 # J2EE-FinalProject-with-Express-API
-This is repository to store my J2EE Final Project Result.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/32255348/128127090-51227475-75bc-435f-956b-cd6bbe825900.png" width="500" />
@@ -17,6 +16,7 @@ Result of J2EE Final Project, requirement for pass J2EE Class in Nanjing Xiaozhu
 </p>
 <p align="center"><i><b>Figure 2</b> Java Logo</i></p>
 
+```diff
 Type                  : Final Project (Nanjing Xiaozhuang University)
 
 Platform              : Website - [J2EE](https://www.oracle.com/java/technologies/appmodel.html)
@@ -24,6 +24,7 @@ Platform              : Website - [J2EE](https://www.oracle.com/java/technologie
 Programming Language  : [Java](https://www.java.com/)
 
 Data source           : [DISCLAIMER- For Study Only] Under Armour
+```
 
 For more details you can see my final report in here: 
 - https://drive.google.com/file/d/1C34SAXHOLS6mMG29tTUyFGXBsiubAMOa/view?usp=sharing
